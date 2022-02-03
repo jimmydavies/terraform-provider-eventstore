@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.10.1
-	github.com/madedotcom/eventstore-client-go v0.0.0-20220201171419-a3b90187d01a
+	github.com/madedotcom/eventstore-client-go v0.0.0-20220203123803-3488c67ff562
 )
 
 require (

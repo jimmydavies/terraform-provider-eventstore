@@ -28,8 +28,12 @@ func Provider() *schema.Provider {
         DefaultFunc: schema.EnvDefaultFunc("EVENTSTORE_PASSWORD", nil),
       },
     },
-    ResourcesMap: map[string]*schema.Resource{},
-    DataSourcesMap: map[string]*schema.Resource{},
+    ResourcesMap: map[string]*schema.Resource{
+      "eventstore_user":     resourceUser(),
+    },
+    DataSourcesMap: map[string]*schema.Resource{
+      "eventstore_user":     dataSourceUser(),
+    },
     ConfigureContextFunc: providerConfigure,
   }
 }
