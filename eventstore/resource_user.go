@@ -28,15 +28,20 @@ func resourceUser() *schema.Resource {
       "fullname": &schema.Schema{
         Type:     schema.TypeString,
         Optional: true,
+        Default:  "",
       },
       "groups": {
         Type:     schema.TypeList,
         Optional: true,
         Elem:     &schema.Schema{Type: schema.TypeString},
+        DefaultFunc:  func() (interface{}, error) {
+          return []interface{}{}, nil
+        },
       },
       "disabled": &schema.Schema{
         Type:     schema.TypeBool,
         Optional: true,
+        Default:  false,
       },
     },
   }

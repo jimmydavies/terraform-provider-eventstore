@@ -29,7 +29,8 @@ func Provider() *schema.Provider {
       },
     },
     ResourcesMap: map[string]*schema.Resource{
-      "eventstore_user":     resourceUser(),
+      "eventstore_user":         resourceUser(),
+      "eventstore_subscription": resourceSubscription(),
     },
     DataSourcesMap: map[string]*schema.Resource{
       "eventstore_user":     dataSourceUser(),
