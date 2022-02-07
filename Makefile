@@ -3,7 +3,7 @@ HOSTNAME=made.com
 NAMESPACE=made
 NAME=eventstore
 BINARY=terraform-provider-${NAME}
-VERSION=0.0.1
+VERSION=0.0.2
 OS_ARCH=darwin_amd64
 
 export GOPRIVATE=github.com/madedotcom/eventstore-client-go
