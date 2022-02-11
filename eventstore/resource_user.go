@@ -23,7 +23,8 @@ func resourceUser() *schema.Resource {
       "password": &schema.Schema{
         Type:      schema.TypeString,
         Sensitive: true,
-        Required:  true,
+        Optional:  true,
+        Computed:  true,
       },
       "fullname": &schema.Schema{
         Type:     schema.TypeString,
@@ -43,6 +44,9 @@ func resourceUser() *schema.Resource {
         Optional: true,
         Default:  false,
       },
+    },
+    Importer: &schema.ResourceImporter{
+      StateContext: schema.ImportStatePassthroughContext,
     },
   }
 }
@@ -89,13 +93,14 @@ func resourceUserRead(ctx context.Context, d *schema.ResourceData, m interface{}
   // Warning or errors can be collected in a slice type
   var diags diag.Diagnostics
 
-  user, err := client.GetUser(d.Get("username").(string))
+  user, err := client.GetUser(d.Id())
 
   if err != nil {
     return diag.FromErr(err)
   }
 
   if user != nil {
+    d.Set("username", user.UserName)
     d.Set("fullname", user.FullName)
     d.Set("groups", user.Groups)
     d.Set("disabled", user.Disabled)
