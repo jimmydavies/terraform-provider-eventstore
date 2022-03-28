@@ -18,7 +18,7 @@ terraform {
   required_providers {
     eventstore = {
       source = "malachantrio/eventstore"
-      version = "0.0.5"
+      version = "0.0.6"
     }
   }
   required_version = ">= 0.13"
