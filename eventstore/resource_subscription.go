@@ -181,7 +181,7 @@ func resourceSubscriptionUpdate(ctx context.Context, d *schema.ResourceData, m i
     return diag.FromErr(err)
   }  
 
-  return resourceUserRead(ctx, d, m)
+  return resourceSubscriptionRead(ctx, d, m)
 }
 
 func resourceSubscriptionDelete(ctx context.Context, d *schema.ResourceData, m interface{}) diag.Diagnostics {
