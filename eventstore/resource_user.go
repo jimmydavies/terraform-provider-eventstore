@@ -14,6 +14,9 @@ func resourceUser() *schema.Resource {
     ReadContext:   resourceUserRead,
     UpdateContext: resourceUserUpdate,
     DeleteContext: resourceUserDelete,
+    Importer: &schema.ResourceImporter{
+       StateContext: schema.ImportStatePassthroughContext,
+    },
     Schema: map[string]*schema.Schema{
       "username": &schema.Schema{
         Type:     schema.TypeString,
@@ -89,13 +92,14 @@ func resourceUserRead(ctx context.Context, d *schema.ResourceData, m interface{}
   // Warning or errors can be collected in a slice type
   var diags diag.Diagnostics
 
-  user, err := client.GetUser(d.Get("username").(string))
+  user, err := client.GetUser(d.Id())
 
   if err != nil {
     return diag.FromErr(err)
   }
 
   if user != nil {
+    d.Set("username", user.UserName)
     d.Set("fullname", user.FullName)
     d.Set("groups", user.Groups)
     d.Set("disabled", user.Disabled)
